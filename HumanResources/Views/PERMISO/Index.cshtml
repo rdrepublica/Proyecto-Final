@@ -1,0 +1,71 @@
+﻿@model IEnumerable<HumanResources.Models.PERMISO>
+
+@{
+    ViewBag.Title = "Permisos";
+}
+
+<center><h2>Permisos de Empleados</h2></center>
+
+
+<div>
+
+    @using (Html.BeginForm("Index", "PERMISO", FormMethod.Get))
+    {
+        <p>
+            <input type="text" name="searching" value="" placeholder="Buscar..." class="form-control" />
+            <br />
+            <input type="submit" value="Buscar" class="btn btn-success" />
+            <a href="/PERMISO/index" class="btn btn-success">Mostrar todos</a>
+        </p>
+    }
+    <br />
+</div>
+<p>
+    <a href="/Home/Index" class="btn btn-primary">&laquo;Inicio</a>
+    <a href="/PERMISO/Create" class="btn btn-primary">Añadir +</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLEADO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_INICIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_FIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COMENTARIOS)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLEADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_INICIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_FIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COMENTARIOS)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+</table>

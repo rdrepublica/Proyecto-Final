@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HumanResources.Models.CARGO>
+
+@{
+    ViewBag.Title = "Cargos";
+}
+
+<center><h2>Cargos</h2></center>
+
+<p>
+    <a href="/Home/Index" class="btn btn-primary">&laquo;Inicio</a>
+    <a href="/CARGO/Create" class="btn btn-primary">Añadir +</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CARGO1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CARGO1)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

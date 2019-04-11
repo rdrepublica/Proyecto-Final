@@ -1,0 +1,66 @@
+﻿@model HumanResources.Models.VACACIONE
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<center><h2>¿Desea eliminar el registro de vacaciones de @Model.EMPLEADO?</h2></center>
+
+<div class="jumbotron">
+
+    <div>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EMPLEADO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EMPLEADO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_INICIO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_INICIO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_FIN)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_FIN)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ANO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ANO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.COMENTARIOS)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.COMENTARIOS)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="/VACACIONES/Index" class="btn btn-info">&laquo;Ver Vacaciones</a>
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+        </div>
+        }
+    </div>
+</div>

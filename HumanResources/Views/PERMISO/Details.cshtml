@@ -1,0 +1,57 @@
+﻿@model HumanResources.Models.PERMISO
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<center><h2>Detalles del permiso de @Model.EMPLEADO </h2></center>
+
+<div class="jumbotron">
+
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EMPLEADO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EMPLEADO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_INICIO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_INICIO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_FIN)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_FIN)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.COMENTARIOS)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.COMENTARIOS)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <br />
+            <a href="/Home/Index" class="btn btn-info">&laquo; Menú Principal</a>
+            <a href="/PERMISO/Index" class="btn btn-info">Ver demas Permisos&raquo;</a>
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
+

@@ -1,0 +1,40 @@
+﻿@model HumanResources.Models.DEPARTAMENTO
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<center><h2>¿Desea eliminar a @Model.NOMBRE?</h2></center>
+
+<div class="jumbotron">
+
+
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CODIGO_DEPARTAMENTO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CODIGO_DEPARTAMENTO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NOMBRE)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NOMBRE)
+            </dd>
+
+        </dl>
+    </div>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="/DEPARTAMENTO/Index" class="btn btn-info">&laquo;Ver Departamentos</a>
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> 
+        </div>
+    }
+</div>

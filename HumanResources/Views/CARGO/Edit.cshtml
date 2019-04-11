@@ -1,0 +1,44 @@
+﻿@model HumanResources.Models.CARGO
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<center><h2>Editar @Model.CARGO1</h2></center>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="jumbotron">
+
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CARGO1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CARGO1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CARGO1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-block btn-danger" />
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                <br />
+                <a href="/Home/Index" class="btn btn-info">&laquo;Ir al Menu Principal</a>
+                <a href="/CARGO/Index" class="btn btn-info">Ver Cargos&raquo;</a>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,33 @@
+﻿@model HumanResources.Models.CARGO
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<center><h2>Detalles de @Model.CARGO1</h2></center>
+
+<div class="jumbotron">
+
+    <div>
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CARGO1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CARGO1)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <br />
+            <a href="/Home/Index" class="btn btn-info">&laquo;Ir al Menu Principal</a>
+            <a href="/CARGO/Index" class="btn btn-info">Ver Cargos&raquo;</a>
+        </div>
+    </div>
+    <br />
+    <br />
+</div>

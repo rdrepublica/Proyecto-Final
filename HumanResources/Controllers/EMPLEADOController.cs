@@ -1,0 +1,151 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using HumanResources.Models;
+
+namespace HumanResources.Controllers
+{
+    public class EMPLEADOController : Controller
+    {
+        private HumanResourcesModel db = new HumanResourcesModel();
+
+        // GET: EMPLEADO
+        public ActionResult Index(String searching, String search)
+        {
+            
+            if (searching != null)
+            {
+                return View(db.EMPLEADOS.Where(x => x.NOMBRE.Contains(searching) | searching == null).ToList());
+            }
+            var employee = from e in db.EMPLEADOS.ToList()
+                           select e;
+
+            if ((!String.IsNullOrEmpty(search)))
+            {
+                DateTime newFecha = DateTime.Parse(search);
+
+                employee = employee.Where(s => s.FECHA_INGRESO.Equals(newFecha));
+            }
+            employee = employee.OrderBy(s => s.FECHA_INGRESO);
+            return View(employee);
+            
+            
+        }
+
+        // GET: EMPLEADO/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            EMPLEADO eMPLEADO = db.EMPLEADOS.Find(id);
+            if (eMPLEADO == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eMPLEADO);
+        }
+
+        // GET: EMPLEADO/Create
+        public ActionResult Create()
+        {
+            var departamento = db.DEPARTAMENTOS.ToList();
+            var listaDepartamentos = new SelectList(departamento, "NOMBRE", "NOMBRE");
+            ViewBag.Departamentos = listaDepartamentos;
+
+            var cargo = db.CARGOes.ToList();
+            var listaCargos = new SelectList(cargo, "CARGO1", "CARGO1");
+            ViewBag.Cargos = listaCargos;
+            return View();
+        }
+
+        // POST: EMPLEADO/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,ID_EMPLEADO,NOMBRE,APELLIDO,TELEFONO,DEPARTAMENTO,CARGO,FECHA_INGRESO,SALARIO,STATUS_EMP")] EMPLEADO eMPLEADO)
+        {
+            if (ModelState.IsValid)
+            {
+                db.EMPLEADOS.Add(eMPLEADO);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(eMPLEADO);
+        }
+
+        // GET: EMPLEADO/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            EMPLEADO eMPLEADO = db.EMPLEADOS.Find(id);
+            if (eMPLEADO == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eMPLEADO);
+        }
+
+        // POST: EMPLEADO/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ID,ID_EMPLEADO,NOMBRE,APELLIDO,TELEFONO,DEPARTAMENTO,CARGO,FECHA_INGRESO,SALARIO,STATUS_EMP")] EMPLEADO eMPLEADO)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(eMPLEADO).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(eMPLEADO);
+        }
+
+        // GET: EMPLEADO/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            EMPLEADO eMPLEADO = db.EMPLEADOS.Find(id);
+            if (eMPLEADO == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eMPLEADO);
+        }
+
+        // POST: EMPLEADO/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            EMPLEADO eMPLEADO = db.EMPLEADOS.Find(id);
+            db.EMPLEADOS.Remove(eMPLEADO);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

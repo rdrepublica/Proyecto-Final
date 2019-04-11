@@ -1,0 +1,74 @@
+﻿@model IEnumerable<HumanResources.Models.SALIDA_EMPLEADOS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<center><h2>Empleados Inactivos</h2></center>
+
+
+<div>
+
+    @using (Html.BeginForm("Index", "SALIDA_EMPLEADOS", FormMethod.Get))
+    {
+        <p>
+            <input type="text" name="search" value="" placeholder="Buscar por fecha..." class="form-control" />
+            <br />
+            <input type="submit" value="Buscar" class="btn btn-success" />
+            <a href="/SALIDA_EMPLEADOS/Index" class="btn btn-success">Ver Todas las Salidas&raquo;</a>
+        </p>
+    }
+    <br />
+</div>
+<p>
+    <a href="/Home/Index" class="btn btn-primary">&laquo;Inicio</a>
+    <a href="/SALIDA_EMPLEADOS/Create" class="btn btn-danger">Inactivar +</a>
+    <a href="/Inactivos/index" class="btn btn-primary">Empleados Inactivos</a>
+    <a href="/EMPLEADO/index" class="btn btn-primary">Todos los empleados&raquo;</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLEADO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_SALIDA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MOTIVO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_SALIDA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLEADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_SALIDA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MOTIVO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_SALIDA)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,94 @@
+﻿@model HumanResources.Models.EMPLEADO
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<center><h2>Mas sobre @Model.NOMBRE</h2></center>
+
+<div class="jumbotron">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ID_EMPLEADO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ID_EMPLEADO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NOMBRE)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NOMBRE)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.APELLIDO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.APELLIDO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TELEFONO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TELEFONO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DEPARTAMENTO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DEPARTAMENTO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CARGO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CARGO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_INGRESO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_INGRESO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SALARIO)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SALARIO)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.STATUS_EMP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.STATUS_EMP)
+            </dd>
+        </dl>
+    </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <br />
+                <a href="/Home/Index" class="btn btn-info">&laquo;Ir al Menu Principal</a>
+                <a href="/EMPLEADO/Index" class="btn btn-info">Ver Empleados&raquo;</a>
+            </div>
+        </div>
+        <br />
+        <br />  
+</div>

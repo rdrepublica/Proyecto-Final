@@ -1,0 +1,68 @@
+﻿@model IEnumerable<HumanResources.Models.NOMINA>
+
+@{
+    ViewBag.Title = "Nómina";
+}
+
+<center><h2>Nómina</h2></center>
+
+<div>
+
+    @using (Html.BeginForm("Index", "NOMINA", FormMethod.Get))
+    {
+        <p>
+            <input type="text" name="searching" value="" placeholder="Buscar..." class="form-control" />
+            <input type="radio" name="find" value="ANO"> Año
+            <input type="radio" name="find" value="MES"> Mes <br />
+
+            <br />
+            <input type="submit" value="Buscar" class="btn btn-success" />
+            <a href="/NOMINA/Index" class="btn btn-success">Todos las Nóminas&raquo;</a>
+        </p>
+    }
+    <br />
+</div>
+<p>
+    <a href="/Home/Index" class="btn btn-primary">&laquo;Inicio</a>
+    <a href="/NOMINA/Create" class="btn btn-primary">Nueva Nómina +</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ANO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MONTO_TOTAL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ANO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MONTO_TOTAL)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>
